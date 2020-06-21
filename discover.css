@@ -1,0 +1,231 @@
+body {
+    position: relative;
+    width: 1440;
+    height: 768px;
+  
+    background: #FFFFFF;
+  }
+
+.navBar {
+    position: absolute;
+    width: 1440px;
+    height: 93px;
+    left: -8px;
+    top: -8px;
+    
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,.2);
+    background: #FFEEB0;
+}
+
+.logo {
+    position: absolute;
+    width: 273px;
+    height: 71px;
+    left: 14px;
+    top: 9px;
+}
+
+.about-button {
+    position: absolute;
+    width: 101px;
+    height: 56px;
+    left: 1000px;
+    top: 16px;
+    
+    border: 3.5px solid #FAAA6D;
+    border-radius: 6px;
+    background-color: #FFEEB0;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #FAAA6D;
+}
+
+.about-button:hover {
+    background-color: #FAAA6D;
+    color: #FFEEB0;
+    transition-duration: 0.15s;
+}
+
+.discover-button {
+    position: absolute;
+    width: 130px;
+    height: 56px;
+    left: 1118px;
+    top: 16px;
+    
+    border: 3.5px solid #FAAA6D;
+    border-radius: 6px;
+    background-color: #FAAA6D;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #FFEEB0;
+}
+
+.signup-button {
+    position: absolute;
+    width: 120px;
+    height: 55px;
+    left: 1265px;
+    top: 16px;
+    
+    border: 3.5px solid #F2684A;
+    border-radius: 6px;
+    background-color: #FFEEB0;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #F2684A;
+}
+
+.signup-button:hover {
+    background-color: #F2684A;
+    color: #FFEEB0;
+    transition-duration: 0.15s;
+}
+
+.filters {
+    position: absolute;
+    width: 355px;
+    height: 71px;
+    left: 97px;
+    top: 170px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 33px;
+    line-height: 40px;
+    
+    color: #419EAE;    
+}
+
+.filter-buttons {
+    position: absolute;
+    width: 150px;
+    height: 49px;
+    top: 260px;
+    
+    background: #FFFFFF;
+    border: 4px solid #F2684A;
+    box-sizing: border-box;
+    border-radius: 60px;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 21px;
+    line-height: 36px;
+
+    color: #F2684A;
+}
+
+.filter-buttons:hover {
+    background: #F2684A;
+    color: #FFFFFF;
+    transition: 0.1s
+}
+
+#community {
+    left: 172px;
+}
+
+#productivity {
+    left: 340px;
+}
+
+#fun {
+    width: 80px;
+    left: 510px;
+}
+
+#education {
+    width: 140px;
+    left: 612px;
+}
+
+#finance {
+    width: 120px;
+    left: 773px;
+}
+
+#other {
+    width: 110px;
+    left: 915px;
+}
+
+#random {
+    width: 120px;
+    left: 1048px;
+    border: 4px solid #419EAE;
+    color: #419EAE;
+}
+
+#random:hover {
+    background-color: #419EAE;
+    color: #FFFFFF;
+}
+
+.search-icon {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    left: 1103px;
+    top: 122px;
+}
+
+.searchbar {
+    position: absolute;
+    width: 176px;
+    height: 30px;
+    left: 1154px;
+    top: 120px;
+    
+    border: 0;
+    border-bottom: 4px solid #848484;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-size: 20px;
+    color: #747474;
+}
+
+.searchbar::placeholder {
+    color: #9e9e9e;
+}
+
+.projects {
+    position: absolute;
+    width: 355px;
+    height: 71px;
+    left: 97px;
+    top: 350px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 33px;
+    line-height: 40px;
+    
+    color: #419EAE;    
+}
+
+.table{
+    height:auto;
+    width: 264px;
+    left: calc(50% - 264px/2);
+    top: 253px;
+  }

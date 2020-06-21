@@ -1,0 +1,164 @@
+body {
+    position: relative;
+    width: 1440;
+    height: 768px;
+  
+    background: #FFFFFF;
+  }
+
+.navBar {
+    position: absolute;
+    width: 1440px;
+    height: 93px;
+    left: -8px;
+    top: -8px;
+    
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,.2);
+    background: #FFEEB0;
+}
+
+.logo {
+    position: absolute;
+    width: 273px;
+    height: 71px;
+    left: 14px;
+    top: 9px;
+}
+
+.about-button {
+    position: absolute;
+    width: 101px;
+    height: 56px;
+    left: 1000px;
+    top: 16px;
+    
+    border: 3.5px solid #FAAA6D;
+    border-radius: 6px;
+    background-color: #FAAA6D;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #FFEEB0;
+}
+
+.discover-button {
+    position: absolute;
+    width: 130px;
+    height: 56px;
+    left: 1118px;
+    top: 16px;
+    
+    border: 3.5px solid #FAAA6D;
+    border-radius: 6px;
+    background-color: #FFEEB0;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #FAAA6D;
+}
+
+.discover-button:hover {
+    background-color: #FAAA6D;
+    color: #FFEEB0;
+    transition-duration: 0.15s;
+}
+
+.profile-button {
+    position: absolute;
+    width: 120px;
+    height: 55px;
+    left: 1265px;
+    top: 16px;
+    
+    border: 3.5px solid #F2684A;
+    border-radius: 6px;
+    background-color: #FFEEB0;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #F2684A;
+}
+
+.profile-button:hover {
+    background-color: #F2684A;
+    color: #FFEEB0;
+    transition-duration: 0.15s;
+}
+
+.what-is-livehack {
+    position: absolute;
+    width: 373px;
+    height: 71px;
+    left: 103px;
+    top: 150px;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 49px;
+
+    color: #419EAE;
+}
+
+.livehack-text {
+    position: absolute;
+    width: 1113px;
+    height: 245px;
+    left: 196px;
+    top: 230px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 36px;
+    
+    color: #000000;
+}
+
+.what-is-hackathon {
+    position: absolute;
+    width: 373px;
+    height: 71px;
+    left: 103px;
+    top: 440px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 49px;
+    
+    color: #419EAE;
+    
+}
+
+.hackathon-text {
+    position: absolute;
+    width: 1087px;
+    height: 161px;
+    left: 196px;
+    top: 520px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 36px;
+    
+    color: #000000;
+}
+

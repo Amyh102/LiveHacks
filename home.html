@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Home page</title>
+    <link rel="stylesheet" href="home.css" />
+  </head>
+
+
+  <body>
+    <div>
+      <nav class="navBar">
+        <img src="logo.png" class="logo" onclick="location.href = 'home.html';">
+        <button class="about-button" onclick="location.href = 'about.html';">About</button>
+        <button class="discover-button" onclick="location.href = 'discover.html';">Discover</button>
+        <button class="signup-button" onclick="location.href = 'signup.html';">Sign Up</button>
+      </nav>
+    </div>
+
+    <div>
+      <h1 class="welcome">Welcome to LiveHacks!</h1>
+
+      <h1 class="new">Newly added:</h1>
+    </div>
+    
+
+    
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-firestore.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyByLy2bchoyR5GwbCXiBU0IsMtcJhKI9eg",
+        authDomain: "livehacks-4de27.firebaseapp.com",
+        databaseURL: "https://livehacks-4de27.firebaseio.com",
+        projectId: "livehacks-4de27",
+        appId: "1:50686463428:web:a1b9805a7f946ed411a891"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+      // db.settings({timestampsInSnapshots: true});
+    </script>
+    <script src="app.js"></script>
+  </body>
+
+</html>

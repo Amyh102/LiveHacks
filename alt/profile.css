@@ -1,0 +1,579 @@
+body {
+    position: relative;
+    width: 1440;
+    height: 768px;
+  
+    background: #FFFFFF;
+  }
+
+  .navBar {
+    position: absolute;
+    width: 1440px;
+    height: 93px;
+    left: -8px;
+    top: -8px;
+    
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,.2);
+    background: #FFEEB0;
+}
+
+.logo {
+    position: absolute;
+    width: 273px;
+    height: 71px;
+    left: 14px;
+    top: 9px;
+}
+
+.about-button {
+    position: absolute;
+    width: 101px;
+    height: 56px;
+    left: 1000px;
+    top: 16px;
+    
+    border: 3.5px solid #FAAA6D;
+    border-radius: 6px;
+    background-color: #FFEEB0;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #FAAA6D;
+}
+
+.about-button:hover {
+    background-color: #FAAA6D;
+    color: #FFEEB0;
+    transition-duration: 0.15s;
+}
+
+.discover-button {
+    position: absolute;
+    width: 130px;
+    height: 56px;
+    left: 1118px;
+    top: 16px;
+    
+    border: 3.5px solid #FAAA6D;
+    border-radius: 6px;
+    background-color: #FFEEB0;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #FAAA6D;
+}
+
+.discover-button:hover {
+    background-color: #FAAA6D;
+    color: #FFEEB0;
+    transition-duration: 0.15s;
+}
+
+.profile-button {
+    position: absolute;
+    width: 120px;
+    height: 55px;
+    left: 1265px;
+    top: 16px;
+    
+    border: 3.5px solid #F2684A;
+    border-radius: 6px;
+    background-color: #F2684A;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #FFEEB0;
+}
+
+.your-projects {
+    position: absolute;
+    width: 355px;
+    height: 71px;
+    left: 97px;
+    top: 220px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 33px;
+    line-height: 40px;
+    
+    color: #419EAE;    
+}
+
+.default-empty {
+    position: absolute;
+    width: 1113px;
+    height: 245px;
+    left: 196px;
+    top: 280px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 36px;
+    
+    color: #000000;
+}
+
+.new-project {
+    position: absolute;
+    width: 260px;
+    height: 55px;
+    left: 575px;
+    top: 125px;
+    
+    border: 3.5px solid #F2684A;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #F2684A;
+}
+
+.new-project:hover {
+    background-color: #F2684A;
+    color: #FFFFFF;
+    transition-duration: 0.15s;
+}
+
+.logout-button {
+    position: absolute;
+    width: 175px;
+    height: 55px;
+    left: 610px;
+    top: 640px;
+    
+    border: 3.5px solid #419EAE;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #419EAE;
+}
+
+.logout-button:hover {
+    background-color: #419EAE;
+    color: #FFFFFF;
+    transition-duration: 0.15s;
+}
+
+/* start new project modal */
+.modal {
+    display: none;
+    position: absolute;
+    width: 462px;
+    height: 488px;
+    left: 489px;
+    top: 173px;
+    
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.modal-topbar {
+    position: absolute;
+    width: 462px;
+    height: 72px;
+    left: 0px;
+    top: 0px;
+    
+    background: #FFEEB0;
+}
+
+.close {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    left: 423px;
+    top: 9px;
+}
+
+.project-title {
+    position: absolute;
+    width: 271px;
+    height: 41px;
+    left: 30px;
+    top: 13px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 27px;
+    line-height: 36px;
+
+    border: 0;
+    
+    background: #FFEEB0;
+    color: #000000;
+}
+
+.project-title::placeholder{
+    color: #888888;
+}
+
+.url-label {
+    position: absolute;
+    width: 137px;
+    height: 46px;
+    left: 48px;
+    top: 78px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    
+    color: #419EAE;    
+}
+
+.url {
+    position: absolute;
+    width: 257px;
+    height: 30px;
+    left: 116px;
+    top: 75px;
+    
+    border: 0;
+    border-bottom: 2.3px solid #419EAE;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-size: 15px;
+    color: #000000; 
+}
+
+.url::placeholder {
+    color: #9e9e9e;
+}
+
+.description-label {
+    position: absolute;
+    width: 239px;
+    height: 46px;
+    left: 48px;
+    top: 117px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    
+    color: #419EAE;
+}
+
+.description {
+    position: absolute;
+    width: 304px;
+    height: 75px;
+    left: 79px;
+    top: 153px;
+    
+    font-family: Cabin;
+
+    background: #FFFFFF;
+    border: 2px solid #419EAE;
+    box-sizing: border-box;
+}
+
+.categories-label {
+    position: absolute;
+    width: 239px;
+    height: 46px;
+    left: 45px;
+    top: 230px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    
+    color: #419EAE;
+}
+
+.categories-buttons {
+    position: absolute;
+    height: 26px;
+    top: 270px;
+    
+    background: #FFFFFF;
+    border: 4px solid #F2684A;
+    box-sizing: border-box;
+    border-radius: 60px;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+
+    color: #F2684A;
+}
+
+.categories-buttons:hover {
+    background: #F2684A;
+    color: #FFFFFF;
+    transition: 0.1s
+}
+
+#community {
+    left: 79px;
+}
+
+#productivity {
+    left: 181px;
+}
+
+#fun {
+    left: 280px;
+}
+
+#education {
+    top: 305px;
+    left: 79px;
+}
+
+#finance {
+    top: 305px;
+    left: 168px;
+}
+
+#other {
+    top: 305px;
+    left: 248px;
+}
+
+.optional-label {
+    position: absolute;
+    width: 239px;
+    height: 46px;
+    left: 46px;
+    top: 332px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    
+    color: #419EAE;
+}
+
+.show-email {
+    position: absolute;
+    width: 239px;
+    height: 46px;
+    left: 116px;
+    top: 369px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    
+    color: #F2684A;
+}
+
+.email-checkbox{
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    left: 80px;
+    top: 368px;
+    
+    background: #FFFFFF;
+    border: 2px solid #F2684A;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.email-checkbox:hover {
+    background: #F2684A;
+    background-image: url('email.svg');
+}
+
+.show-github {
+    position: absolute;
+    width: 239px;
+    height: 46px;
+    left: 276px;
+    top: 369px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    
+    color: #F2684A;
+}
+
+.github-checkbox{
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    left: 240px;
+    top: 368px;
+    
+    background: #FFFFFF;
+    border: 2px solid #F2684A;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.github-checkbox:hover {
+    background: #F2684A;
+    background-image: url('github.svg');
+}
+
+.upload {
+    position: absolute;
+    width: 141px;
+    height: 46px;
+    left: 167px;
+    top: 423px;
+    
+    border: 3.5px solid #419EAE;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 36px;
+    
+    color: #419EAE;
+}
+
+.upload:hover {
+    background-color: #419EAE;
+    color: #FFFFFF;
+    transition-duration: 0.15s;
+}
+/* end new project modal */
+
+.joined {
+    position: absolute;
+    width: 261px;
+    height: 46px;
+    left: 1067px;
+    top: 90px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    
+    color: #848484;
+}
+
+.info-email {
+    position: absolute;
+    width: 261px;
+    height: 46px;
+    left: 1067px;
+    top: 125px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    
+    color: #848484;
+}
+
+.add-github {
+    position: absolute;
+    width: 140px;
+    height: 42px;
+    left: 1067px;
+    top: 180px;
+    
+    border: 3.5px solid #F2684A;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 23px;
+    
+    color: #F2684A;
+}
+
+.add-github:hover {
+    background-color: #F2684A;
+    color: #FFFFFF;
+    transition-duration: 0.15s;
+}
+
+.refresh {
+    position: absolute;
+    width: 140px;
+    height: 42px;
+    left: 1067px;
+    top: 580px;
+}
+
+.table{
+    height: auto;
+    width: auto;
+}
+
+.container{
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height:142px;
+    width: 344px;
+    position: absolute;
+    left: 196px;
+    top: 300px;
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+.posted-title {
+    left: 500px;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 24px;
+    
+    color: #000000;
+}

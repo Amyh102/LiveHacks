@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Alt Profile page</title>
+    <link rel="stylesheet" href="profile.css" />
+  </head>
+
+
+  <body>
+    
+      <div>
+        <nav class="navBar">
+          <img src="logo.png" class="logo" onclick="location.href = 'home.html';">
+          <button class="about-button" onclick="location.href = 'about.html';">About</button>
+          <button class="discover-button" onclick="location.href = 'discover.html';">Discover</button>
+          <button class="profile-button" onclick="location.href = 'profile.html';">Profile</button>
+        </nav>
+      </div>
+      
+      <div>
+        <h1 class="your-projects">Your projects:</h1>
+        <p class="default-empty" id="default-empty">No projects posted yet</p>
+
+        <container class="container">
+            <table id="myTable" class="table"></table>
+        </container>
+
+        <button class="new-project" id="new-project" onClick="closeModal()">Upload new project</button>
+        <button class="logout-button" id="logout-button" onClick="logoutUser()">Log out</button>
+      </div>
+
+      <div class="profile-info" id="profile-info">
+        <p class="joined" id="joined">Joined June 20, 2020</p>
+        <p class="info-email" id="info-email">your email</p>
+        <button class="add-github" id="add-github"><span src="github.svg"></span>Add GitHub</button>
+      </div>
+
+      <div class="modal" id="modal">
+        <div class="modal-topbar">
+          <h1 class="project-title" placeholder="Project Title"></h1>
+          <img class="close" src="close.svg" alt="close modal button" onClick="closeModal()">
+        </div>
+
+        <div class="modal-content">
+          <input class="project-title" id="project-title" placeholder="Project Title"></h1>
+          <h1 class="url-label">URL:</h1>
+          <input class="url" id="url" type="text" placeholder="your-project.herokuapp.com">
+          <h1 class="description-label">Short description:</h1>
+          <textarea class="description" id="description" maxlength="250" type="text" placeholder="Max. 250 characters" id="description"></textarea>
+          
+          <h1 class="categories-label">Categories:</h1>
+          <script>
+            var categories = [];
+            var optional = [];
+          </script>
+          <button class="categories-buttons" id="community" onClick="categorySelected(this.id)">Community</button>
+          <button class="categories-buttons" id="productivity" onClick="categorySelected(this.id)">Productivity</button>
+          <button class="categories-buttons" id="fun" onClick="categorySelected(this.id)">Fun</button>
+          <button class="categories-buttons" id="education" onClick="categorySelected(this.id)">Education</button>
+          <button class="categories-buttons" id="finance" onClick="categorySelected(this.id)">Finance</button>
+          <button class="categories-buttons" id="other" onClick="categorySelected(this.id)">Other</button>
+
+          <h1 class="optional-label">Optional:</h1>
+          <label class="show-email">Show email</label>
+          <button class="email-checkbox" id="email-checkbox" onClick="toggleCheckbox(this.id)"></button>
+          <label class="show-github">Show GitHub</label>
+          <button class="github-checkbox" id="github-checkbox" onClick="toggleCheckbox(this.id)"></button>
+          
+          <button class="upload" id="upload">Upload</button>
+        </div>
+      </div>
+
+      <button class="refresh" onClick="refreshProjects()">Refresh</button>
+      
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-firestore.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyByLy2bchoyR5GwbCXiBU0IsMtcJhKI9eg",
+        authDomain: "livehacks-4de27.firebaseapp.com",
+        databaseURL: "https://livehacks-4de27.firebaseio.com",
+        projectId: "livehacks-4de27",
+        appId: "1:50686463428:web:a1b9805a7f946ed411a891"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+      // db.settings({timestampsInSnapshots: true});
+    </script>
+    <script src="../app.js"></script>
+  </body>
+
+</html>
