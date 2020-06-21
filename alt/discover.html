@@ -32,13 +32,18 @@
     </div>
 
     <div>
-      <img src="search.svg" class="search-icon" alt="search icon">
-      <input class="searchbar" type="text" placeholder="Search">
+      <button class="search-icon" alt="search icon" onClick="filterSelected(document.getElementById('searchbar').value)"></button>
+      <input class="searchbar" id="searchbar" type="text" placeholder="Search (beta)">
     </div>
 
     <div>
         <h1 class="projects">Projects:</h1>
-        <table id="myTable" class="table"></table>
+        <p class="default-empty" id="default-empty">Loading projects...</p>
+        <container class="table" id="table">
+            <table id="project-table" class="project-table">
+              <tr id="row"></tr>
+            </table>
+        </container>
     </div>
     
 

@@ -25,8 +25,10 @@
         <h1 class="your-projects">Your projects:</h1>
         <p class="default-empty" id="default-empty">No projects posted yet</p>
 
-        <container class="container">
-            <table id="myTable" class="table"></table>
+        <container class="table" id="table">
+            <table id="project-table" class="project-table">
+              <tr id="row"></tr>
+            </table>
         </container>
 
         <button class="new-project" id="new-project" onClick="closeModal()">Upload new project</button>
@@ -34,9 +36,9 @@
       </div>
 
       <div class="profile-info" id="profile-info">
-        <p class="joined" id="joined">Joined June 20, 2020</p>
-        <p class="info-email" id="info-email">your email</p>
-        <button class="add-github" id="add-github"><span src="github.svg"></span>Add GitHub</button>
+        <p class="joined" id="joined"></p>
+        <p class="info-email" id="info-email"></p>
+        <p class="info-github" id="info-github"></p>
       </div>
 
       <div class="modal" id="modal">
@@ -45,13 +47,16 @@
           <img class="close" src="close.svg" alt="close modal button" onClick="closeModal()">
         </div>
 
-        <div class="modal-content">
-          <input class="project-title" id="project-title" placeholder="Project Title"></h1>
-          <h1 class="url-label">URL:</h1>
-          <input class="url" id="url" type="text" placeholder="your-project.herokuapp.com">
-          <h1 class="description-label">Short description:</h1>
-          <textarea class="description" id="description" maxlength="250" type="text" placeholder="Max. 250 characters" id="description"></textarea>
-          
+        <div class="modal-content" id="modal-content">
+
+          <form id="modal-form">
+            <input class="project-title" id="project-title" placeholder="Project Title"></h1>
+            <h1 class="url-label">URL:</h1>
+            <input class="url" id="url" type="text" placeholder="https://your-project.herokuapp.com/">
+            <h1 class="description-label">Short description:</h1>
+            <textarea class="description" id="description" maxlength="65" type="text" placeholder="Max. 65 characters" id="description"></textarea>
+          </form>
+
           <h1 class="categories-label">Categories:</h1>
           <script>
             var categories = [];
@@ -71,11 +76,9 @@
           <button class="github-checkbox" id="github-checkbox" onClick="toggleCheckbox(this.id)"></button>
           
           <button class="upload" id="upload">Upload</button>
-        </div>
+        </div>  <!-- end modal-content -->
       </div>
 
-      <button class="refresh" onClick="refreshProjects()">Refresh</button>
-      
     <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-firestore.js"></script>

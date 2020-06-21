@@ -484,7 +484,7 @@ body {
     position: absolute;
     width: 261px;
     height: 46px;
-    left: 1067px;
+    left: 1167px;
     top: 90px;
     
     font-family: Cabin;
@@ -500,7 +500,7 @@ body {
     position: absolute;
     width: 261px;
     height: 46px;
-    left: 1067px;
+    left: 1167px;
     top: 125px;
     
     font-family: Cabin;
@@ -512,62 +512,51 @@ body {
     color: #848484;
 }
 
-.add-github {
+.info-github {
     position: absolute;
-    width: 140px;
-    height: 42px;
-    left: 1067px;
-    top: 180px;
+    width: 261px;
+    height: 46px;
+    left: 1167px;
+    top: 160px;
     
-    border: 3.5px solid #F2684A;
-    border-radius: 5px;
-    background-color: #FFFFFF;
-
     font-family: Cabin;
     font-style: normal;
     font-weight: bold;
-    font-size: 19px;
-    line-height: 23px;
+    font-size: 20px;
+    line-height: 24px;
     
-    color: #F2684A;
-}
-
-.add-github:hover {
-    background-color: #F2684A;
-    color: #FFFFFF;
-    transition-duration: 0.15s;
-}
-
-.refresh {
-    position: absolute;
-    width: 140px;
-    height: 42px;
-    left: 1067px;
-    top: 580px;
+    color: #848484;
 }
 
 .table{
-    height: auto;
-    width: auto;
-}
-
-.container{
-    overflow-y: auto;
-    overflow-x: hidden;
-    max-height:142px;
-    width: 344px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    max-height:470px;
+    width: 1000px;
     position: absolute;
-    left: 196px;
+    left: 176px;
     top: 300px;
-    font-family: Cabin;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 16px;
   }
 
+.frame-holder{
+    height: 200px;
+    width: 380px;
+}
+
+.website {
+    border: 17px solid #FAAA6D;
+    border-radius: 20px;
+    height: 768px;
+    width: 1430px;
+    pointer-events: none;
+
+    -webkit-transform: scale(0.239);
+    -webkit-transform-origin: 0 0;
+}
+
 .posted-title {
-    left: 500px;
+    width: 380px;
+    align-content: center;
 
     font-family: Cabin;
     font-style: normal;
@@ -577,3 +566,17 @@ body {
     
     color: #000000;
 }
+
+.posted-description {
+    width: 380px;
+    align-content: center;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    
+    color: #444444;
+}
+

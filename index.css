@@ -1,0 +1,101 @@
+body {
+    position: relative;
+    width: 1440px;
+    height: 768px;
+    
+    background: #FFEEB0;
+}
+
+.logo {
+    position: absolute;
+    width: 417px;
+    height: 112px;
+    left: 11px;
+    top: 15px;
+}
+
+.discover {
+    position: absolute;
+    width: 259px;
+    height: 129px;
+    left: 486px;
+    top: 273px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 78px;
+    
+    color: #000000;
+}
+
+.go {
+    position: absolute;
+    width: 221px;
+    height: 78px;
+    left: 590px;
+    top: 533px;
+    
+    border: 5px solid #FAAA6D;
+    border-radius: 6px;
+    background: #FFEEB0;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 36px;
+
+    color: #FAAA6D;
+}
+
+.go:hover{
+    color: #FFEEB0;
+    background: #FAAA6D;
+
+}
+
+
+.hi {
+    position: absolute;
+    width: 659px;
+    height: 129px;
+    left: 256px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 78px;
+
+    color: #FAAA6D
+  }
+  
+    span:before{
+      content: '';
+      animation: animate infinite 12s;
+    }
+  
+    @keyframes animate {
+      0%{
+        content: ' planners';
+      }
+  
+      20%{
+        content: ' games';
+      }
+  
+      40%{
+        content: ' communities';
+      }
+  
+      60%{
+        content: ' finance tools';
+      }
+  
+      80%{
+        content: ' life hacks';
+      }
+
+    }

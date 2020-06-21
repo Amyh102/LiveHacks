@@ -102,7 +102,7 @@ body {
     width: 355px;
     height: 71px;
     left: 97px;
-    top: 170px;
+    top: 120px;
     
     font-family: Cabin;
     font-style: normal;
@@ -117,7 +117,7 @@ body {
     position: absolute;
     width: 150px;
     height: 49px;
-    top: 260px;
+    top: 210px;
     
     background: #FFFFFF;
     border: 4px solid #F2684A;
@@ -185,6 +185,9 @@ body {
     height: 35px;
     left: 1103px;
     top: 122px;
+
+    border: 0;
+    background-image: url('search.svg');
 }
 
 .searchbar {
@@ -212,7 +215,7 @@ body {
     width: 355px;
     height: 71px;
     left: 97px;
-    top: 350px;
+    top: 290px;
     
     font-family: Cabin;
     font-style: normal;
@@ -223,9 +226,70 @@ body {
     color: #419EAE;    
 }
 
+.default-empty {
+    position: absolute;
+    width: 1113px;
+    height: 245px;
+    left: 196px;
+    top: 350px;
+    
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 36px;
+    
+    color: #000000;
+}
+
 .table{
-    height:auto;
-    width: 264px;
-    left: calc(50% - 264px/2);
-    top: 253px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    max-height:470px;
+    width: 1000px;
+    position: absolute;
+    left: 176px;
+    top: 380px;
   }
+
+.frame-holder{
+    height: 200px;
+    width: 380px;
+}
+
+.website {
+    border: 17px solid #FAAA6D;
+    border-radius: 20px;
+    height: 768px;
+    width: 1430px;
+    pointer-events: none;
+
+    -webkit-transform: scale(0.239);
+    -webkit-transform-origin: 0 0;
+}
+
+.posted-title {
+    width: 380px;
+    align-content: center;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 24px;
+    
+    color: #000000;
+}
+
+.posted-description {
+    width: 380px;
+    align-content: center;
+
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    
+    color: #444444;
+}

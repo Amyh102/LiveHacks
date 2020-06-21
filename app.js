@@ -17,6 +17,7 @@ if(currentLocation == 'signup.html'){
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
         const confirm = document.getElementById("confirm").value;
+        const github = document.getElementById("github").value;
         console.log(email, password)
         if(password != confirm){
             alert("Passwords do not match");
@@ -31,7 +32,14 @@ if(currentLocation == 'signup.html'){
             if(valid == true){
                 console.log("user created")
                 console.log(cred.user.email)
-                userLoggedIn();
+                cred.user.updateProfile({
+                    displayName: github
+                    }).then(function() {
+                        userLoggedIn();
+                    }).catch(function(error) {
+                        console.log(error);
+                    });
+                
             }
         })
     });
@@ -53,39 +61,7 @@ if(currentLocation == 'signup.html'){
         }).then(cred => {
             if(valid == true){
                 console.log("user logged in")
-                console.log(cred.user.email)
-                
-
-
-
-                firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-                .then(function() {
-                  // Existing and future Auth states are now persisted in the current
-                  // session only. Closing the window would clear any existing state even
-                  // if a user forgets to sign out.
-                  userLoggedIn();
-                  // New sign-in will be persisted with session persistence.
-                  return firebase.auth().signInWithEmailAndPassword(email, password);
-                })
-                .catch(function(error) {
-                  // Handle Errors here.
-                  console.log(error.message);
-                });
-
-
-
-
-
-
-                var user = firebase.auth().currentUser;
-                    if (user) {
-                        console.log("there is a user")
-                        // console.log(user)
-                    // User is signed in.
-                    } else {
-                        console.log("no user")
-                    // No user is signed in.
-                    }
+                userLoggedIn();
             }
         })
     });
@@ -125,24 +101,16 @@ if(currentLocation == 'signup.html'){
 } // ----------- end signup.html actions
 
 
-if(window.location.pathname == './discover.html'){
-    // discover page
-    function filterSelected(id){
-        console.log(id);
-        /*
-            set button as selected, change colour
-            display related projects
-
-        */
-    }
-}
-
-
 if(currentLocation == 'profile.html'){
     // get current user
     setTimeout( function(){
         user = firebase.auth().currentUser;
-    }, 1500);
+        var creation = user.metadata.creationTime.split(" ");
+        document.getElementById('joined').innerHTML = "Joined " + creation[2] + " " + creation[1] + ", " + creation[3];
+        document.getElementById('info-email').innerHTML = user.email;
+        document.getElementById('info-github').innerHTML = user.displayName;
+        console.log("should set email")
+    }, 800);
 
     function logoutUser(){
         firebase.auth().signOut().then(function() {
@@ -156,11 +124,28 @@ if(currentLocation == 'profile.html'){
     function closeModal(){
         if(document.getElementById("modal").style.display != "inline"){
             //open modal
-            document.getElementById("modal").style.display = "inline"
+            document.getElementById("modal").style.display = "inline";
         }
         else{
             // close modal
-            document.getElementById("modal").style.display = "none"
+
+            // reset categories
+            for(j = 0; j < categories.length; j++){
+                document.getElementById(categories[j]).style.color = "#F2684A";
+                document.getElementById(categories[j]).style.background = "#FFFFFF";
+            }
+            // reset optional
+            for(j = 0; j < optional.length; j++){
+                document.getElementById(optional + "-checkbox").style.background = "#FFFFFF";
+            }
+            categories = [];
+            optional = [];
+
+            setTimeout(() => {
+                document.getElementById("modal").style.display = "none";
+                document.getElementById("modal-form").reset();
+            }, 800);
+            
         }
     }
 
@@ -204,65 +189,321 @@ if(currentLocation == 'profile.html'){
             optional: optional
         }).then(function() {
             console.log("Document successfully written!");
+            refreshProjects(user.email);
             closeModal();
         }).catch(function(error) {
             console.error("Error writing document: ", error);
         });
     }) // end upload new project
     // ----------- end profile page modal ------------
-
-    function refreshProjects(){
-        document.getElementById("default-empty").style.display = 'none';
-
-        var ifrm = document.createElement('iframe');
-        ifrm.setAttribute('id', 'ifrm'); // assign an id
-        ifrm.setAttribute('class', 'ifrm');
-        ifrm.setAttribute('src', 'https://en.wikipedia.org/wiki/Wiki');
-
-        
-
-        var table = document.getElementById("myTable");
-
-        db.collection(user.email).get().then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-                var row = table.insertRow(-1);
-                var cell = row.insertCell(0);
-                cell.innerHTML = doc.id;
-                cell.className = 'posted-title';
-
-                var row = table.insertRow(-1);
-                var cell = row.insertCell(0);
-                cell.innerHTML = doc.data().description;
-                cell.className = 'posted-title';
-
-                document.getElementById("myTable").appendChild(ifrm);
-            });
-        });
-        
-        
-
-        // for (j = 0; j < optional.length; j++){
-        //     if(optional[j] == 'email'){
-        //         // add email
-        //     }
-        //     else if(optional[j] == 'github'){
-        //         // add github
-        //     }
-        //     console.log(x);
-        //     var table = document.getElementById("myTable");
-        //     var row = table.insertRow(0);
-        //     var cell1 = row.insertCell(0);
-        //     var cell2 = row.insertCell(1);
-        //     cell1.innerHTML = local_high_carbon_array[x][0];
-        //     cell2.innerHTML = local_high_carbon_array[x][1];
-        //     cell1.className = 'red';
-        //     cell2.className = 'red';
-        //   }
-
-
-    }
-
+    
 } // ------- end profile.html actions
 
+
+var previousFilter = null;
+if(currentLocation == 'discover.html'){
+    setTimeout(() => {
+        user = firebase.auth().currentUser;
+        refreshProjects("demo-samples");
+        refreshProjects(user.email);
+    }, 800);
+    
+    // discover page
+    function filterSelected(id){
+        console.log(id);
+        if(id == 'random'){
+            randomProject();
+        }
+        else{
+            filterProjects(id)
+            setTimeout(() => {
+                previousFilter = id;
+            }, 300);
+        }
+        
+    }
+}
+
+
+function refreshProjects(collectionID){
+    document.getElementById("default-empty").style.display = 'none';
+    user = firebase.auth().currentUser;
+
+    db.collection(collectionID).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc);
+          
+            table = document.getElementById("project-table");
+            // add website
+            var frameHolder = document.createElement('div');
+            frameHolder.setAttribute('class', 'frame-holder');
+            var ifrm = document.createElement('iframe');
+            ifrm.setAttribute('id', 'ifrm'); // assign an id
+            ifrm.setAttribute('class', 'website');
+            ifrm.setAttribute('src', doc.data().url);
+            var cell = document.getElementById("row").insertCell(0);
+            frameHolder.appendChild(ifrm);
+            cell.appendChild(frameHolder); // adds iframe into cell
+
+            // add optional email/github
+            optional =  doc.data().optional;
+            if(optional.length == 1){
+                var optionalElements = document.createElement('p');
+                optionalElements.className = 'posted-description';
+                if(optional[0] == 'email'){
+                    optionalElements.innerHTML = user.email;
+                    cell.appendChild(optionalElements);
+                }
+                else if(optional[0] == 'github'){
+                    optionalElements.innerHTML = user.displayName;
+                    cell.appendChild(optionalElements);
+                }
+            }
+            else if(optional.length == 2){
+                var optionalElements = document.createElement('p');
+                optionalElements.className = 'posted-description';
+ 
+                optionalElements.innerHTML = user.email + "&emsp;&emsp;" + user.displayName;
+                cell.appendChild(optionalElements);
+            }
+            else { // anonymous poster
+                var optionalElements = document.createElement('p');
+                optionalElements.className = 'posted-description';
+ 
+                optionalElements.innerHTML = optionalElements.innerHTML = "anonymous";;
+                cell.appendChild(optionalElements);
+            }
+
+            var tableTitle = document.createElement('a');
+            tableTitle.setAttribute('href', doc.data().url);
+            tableTitle.setAttribute('target', "_blank");
+            tableTitle.innerHTML = doc.id;
+            tableTitle.className = 'posted-title';
+            cell.appendChild(tableTitle); // adds project title
+            var tableDesc = document.createElement('p');
+            tableDesc.innerHTML = doc.data().description;
+            tableDesc.className = 'posted-description';
+            cell.appendChild(tableDesc); // adds project description 
+        });
+    }); // end adding to db
+}// end refreshProjects()
+
+
+function filterProjects(filter){
+    if(filter != document.getElementById("searchbar").value){
+        if(previousFilter != null){ // clear previous filter button
+            document.getElementById(previousFilter).style.color = '#F2684A';
+            document.getElementById(previousFilter).style.background = '#FFFFFF';
+        }
+        document.getElementById(filter).style.background = '#F2684A';
+        document.getElementById(filter).style.color = '#FFFFFF';
+    }
+    user = firebase.auth().currentUser;
+    document.getElementById("row").innerHTML = "";
+
+    db.collection("demo-samples").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc);
+            if(doc.data().categories.includes(filter)){
+                table = document.getElementById("project-table");
+                // add website
+                var frameHolder = document.createElement('div');
+                frameHolder.setAttribute('class', 'frame-holder');
+                var ifrm = document.createElement('iframe');
+                ifrm.setAttribute('id', 'ifrm'); // assign an id
+                ifrm.setAttribute('class', 'website');
+                ifrm.setAttribute('src', doc.data().url);
+                var cell = document.getElementById("row").insertCell(0);
+                frameHolder.appendChild(ifrm);
+                cell.appendChild(frameHolder); // adds iframe into cell
+
+                // add optional email/github
+                optional =  doc.data().optional;
+                if(optional.length == 1){
+                    var optionalElements = document.createElement('p');
+                    optionalElements.className = 'posted-description';
+                    if(optional[0] == 'email'){
+                        optionalElements.innerHTML = user.email;
+                        cell.appendChild(optionalElements);
+                    }
+                    else if(optional[0] == 'github'){
+                        optionalElements.innerHTML = user.displayName;
+                        cell.appendChild(optionalElements);
+                    }
+                }
+                else if(optional.length == 2){
+                    var optionalElements = document.createElement('p');
+                    optionalElements.className = 'posted-description';
+    
+                    optionalElements.innerHTML = user.email + "&emsp;&emsp;" + user.displayName;
+                    cell.appendChild(optionalElements);
+                }
+                else { // anonymous poster
+                    var optionalElements = document.createElement('p');
+                    optionalElements.className = 'posted-description';
+    
+                    optionalElements.innerHTML = optionalElements.innerHTML = "anonymous";;
+                    cell.appendChild(optionalElements);
+                }
+
+                var tableTitle = document.createElement('a');
+                tableTitle.setAttribute('href', doc.data().url);
+                tableTitle.setAttribute('target', "_blank");
+                tableTitle.innerHTML = doc.id;
+                tableTitle.className = 'posted-title';
+                cell.appendChild(tableTitle); // adds project title
+                var tableDesc = document.createElement('p');
+                tableDesc.innerHTML = doc.data().description;
+                tableDesc.className = 'posted-description';
+                cell.appendChild(tableDesc); // adds project description 
+            }
+        });
+    }); // end adding to db - demo samples
+
+    db.collection(user.email).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc);
+            if(doc.data().categories.includes(filter)){
+                table = document.getElementById("project-table");
+                // add website
+                var frameHolder = document.createElement('div');
+                frameHolder.setAttribute('class', 'frame-holder');
+                var ifrm = document.createElement('iframe');
+                ifrm.setAttribute('id', 'ifrm'); // assign an id
+                ifrm.setAttribute('class', 'website');
+                ifrm.setAttribute('src', doc.data().url);
+                var cell = document.getElementById("row").insertCell(0);
+                frameHolder.appendChild(ifrm);
+                cell.appendChild(frameHolder); // adds iframe into cell
+
+                // add optional email/github
+                optional =  doc.data().optional;
+                if(optional.length == 1){
+                    var optionalElements = document.createElement('p');
+                    optionalElements.className = 'posted-description';
+                    if(optional[0] == 'email'){
+                        optionalElements.innerHTML = user.email;
+                        cell.appendChild(optionalElements);
+                    }
+                    else if(optional[0] == 'github'){
+                        optionalElements.innerHTML = user.displayName;
+                        cell.appendChild(optionalElements);
+                    }
+                }
+                else if(optional.length == 2){
+                    var optionalElements = document.createElement('p');
+                    optionalElements.className = 'posted-description';
+    
+                    optionalElements.innerHTML = user.email + "&emsp;&emsp;" + user.displayName;
+                    cell.appendChild(optionalElements);
+                }
+                else { // anonymous poster
+                    var optionalElements = document.createElement('p');
+                    optionalElements.className = 'posted-description';
+    
+                    optionalElements.innerHTML = optionalElements.innerHTML = "anonymous";;
+                    cell.appendChild(optionalElements);
+                }
+
+                var tableTitle = document.createElement('a');
+                tableTitle.setAttribute('href', doc.data().url);
+                tableTitle.setAttribute('target', "_blank");
+                tableTitle.innerHTML = doc.id;
+                tableTitle.className = 'posted-title';
+                cell.appendChild(tableTitle); // adds project title
+                var tableDesc = document.createElement('p');
+                tableDesc.innerHTML = doc.data().description;
+                tableDesc.className = 'posted-description';
+                cell.appendChild(tableDesc); // adds project description 
+            }
+        });
+    }); // end adding to db - user's entries
+
+
+
+    // specific search
+    if(filter == document.getElementById("searchbar").value){
+        filter = filter.toLowerCase();
+        db.collection("demo-samples").get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc);
+                if(doc.data().categories.includes(filter) || doc.id.toLowerCase().includes(filter) || doc.data().description.toLowerCase().includes(filter)){
+                    table = document.getElementById("project-table");
+                    // add website
+                    var frameHolder = document.createElement('div');
+                    frameHolder.setAttribute('class', 'frame-holder');
+                    var ifrm = document.createElement('iframe');
+                    ifrm.setAttribute('id', 'ifrm'); // assign an id
+                    ifrm.setAttribute('class', 'website');
+                    ifrm.setAttribute('src', doc.data().url);
+                    var cell = document.getElementById("row").insertCell(0);
+                    frameHolder.appendChild(ifrm);
+                    cell.appendChild(frameHolder); // adds iframe into cell
+    
+                    // add optional email/github
+                    optional =  doc.data().optional;
+                    if(optional.length == 1){
+                        var optionalElements = document.createElement('p');
+                        optionalElements.className = 'posted-description';
+                        if(optional[0] == 'email'){
+                            optionalElements.innerHTML = user.email;
+                            cell.appendChild(optionalElements);
+                        }
+                        else if(optional[0] == 'github'){
+                            optionalElements.innerHTML = user.displayName;
+                            cell.appendChild(optionalElements);
+                        }
+                    }
+                    else if(optional.length == 2){
+                        var optionalElements = document.createElement('p');
+                        optionalElements.className = 'posted-description';
+        
+                        optionalElements.innerHTML = user.email + "&emsp;&emsp;" + user.displayName;
+                        cell.appendChild(optionalElements);
+                    }
+                    else { // anonymous poster
+                        var optionalElements = document.createElement('p');
+                        optionalElements.className = 'posted-description';
+        
+                        optionalElements.innerHTML = optionalElements.innerHTML = "anonymous";;
+                        cell.appendChild(optionalElements);
+                    }
+    
+                    var tableTitle = document.createElement('a');
+                    tableTitle.setAttribute('href', doc.data().url);
+                    tableTitle.setAttribute('target', "_blank");
+                    tableTitle.innerHTML = doc.id;
+                    tableTitle.className = 'posted-title';
+                    cell.appendChild(tableTitle); // adds project title
+                    var tableDesc = document.createElement('p');
+                    tableDesc.innerHTML = doc.data().description;
+                    tableDesc.className = 'posted-description';
+                    cell.appendChild(tableDesc); // adds project description 
+                }
+            });
+        }); // end adding to db - demo samples
+    }
+
+}// end filterProjects()
+
+function randomProject(){
+    var randomUrl = [];
+    db.collection("demo-samples").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            randomUrl.push(doc.data().url);
+        })
+    })
+    db.collection(user.email).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            randomUrl.push(doc.data().url);
+        })
+    })
+    setTimeout(() => {
+        url = randomUrl[Math.floor(Math.random() * randomUrl.length)]
+        window.open(url);
+    }, 500);
+}

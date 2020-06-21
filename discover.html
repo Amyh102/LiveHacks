@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Discover page</title>
+    <title>Alt Discover page</title>
     <link rel="stylesheet" href="discover.css" />
   </head>
 
@@ -16,7 +16,7 @@
         <img src="logo.png" class="logo" onclick="location.href = 'home.html';">
         <button class="about-button" onclick="location.href = 'about.html';">About</button>
         <button class="discover-button" onclick="location.href = 'discover.html';">Discover</button>
-        <button class="signup-button" onclick="location.href = 'signup.html';">Sign Up</button>
+        <button class="signup-button" onclick="location.href = 'signup.html';">Sign up</button>
       </nav>
     </div>
 
@@ -32,13 +32,18 @@
     </div>
 
     <div>
-      <img src="search.svg" class="search-icon" alt="search icon">
-      <input class="searchbar" type="text" placeholder="Search">
+      <button class="search-icon" alt="search icon" onClick="filterSelected(document.getElementById('searchbar').value)"></button>
+      <input class="searchbar" id="searchbar" type="text" placeholder="Search (beta)">
     </div>
 
     <div>
         <h1 class="projects">Projects:</h1>
-        <table id="myTable" class="table"></table>
+        <p class="default-empty" id="default-empty">Loading projects...</p>
+        <container class="table" id="table">
+            <table id="project-table" class="project-table">
+              <tr id="row"></tr>
+            </table>
+        </container>
     </div>
     
 
@@ -63,7 +68,7 @@
       const db = firebase.firestore();
       // db.settings({timestampsInSnapshots: true});
     </script>
-    <script src="app.js"></script>
+    <script src="../app.js"></script>
   </body>
 
 </html>

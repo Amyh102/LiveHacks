@@ -118,12 +118,12 @@ body {
     width: 30px;
     height: 30px;
     left: 515px;
-    
-    font-family: Cabin;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 25px;
-    line-height: 30px;
+}
+
+#github-label {
+    background-image: url("assets/github.svg");
+    top: 240px;
+    fill: #F2684A;
 }
 
 #email-label {
@@ -158,6 +158,10 @@ body {
 
 .form::placeholder {
     color: rgb(155, 155, 155);
+}
+
+#github {
+    top: 235px;
 }
 
 #email {
